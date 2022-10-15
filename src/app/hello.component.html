@@ -1,1 +1,33 @@
-<span> test Data </span>
+<form #dictForm="ngForm">
+  <div
+    class="form-group dict-form"
+    style="margin-left:10px;border:1px solid red;padding:10px"
+  >
+    <label for="name">Search Word from Dictonary</label><br /><br />
+    <div class="dict-form-inner">
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        required
+        ngModel
+        name="name"
+        #name="ngModel"
+      />
+      <button
+        style="margin-left:10px"
+        class="btn btn-primary"
+        (click)="autoCorrectDictonaryWord(name.value)"
+      >
+        Search
+      </button>
+    </div>
+  </div>
+</form>
+
+<br />
+<br />
+Result:-
+<span *ngFor="let _filteredData of filteredData">
+  {{ _filteredData || null }}</span
+>
