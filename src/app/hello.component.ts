@@ -7,14 +7,71 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HelloComponent implements OnInit {
   // @Input() name: string;
-  masterData: string[] = ['all'];
+  masterData: string[] = [
+    'A',
+    'a',
+    'aa',
+    'aal',
+    'aalii',
+    'aam',
+    'Aani',
+    'aardvark',
+    'aardwolf',
+    'Aaron',
+    'Aaronic',
+    'Aaronical',
+    'Aaronite',
+    'Aaronitic',
+    'Aaru',
+    'Ab',
+    'aba',
+    'Ababdeh',
+    'Ababua',
+    'abac',
+    'abaca',
+    'abacate',
+    'abacay',
+    'abacinate',
+    'abacination',
+    'abaciscus',
+    'abacist',
+    'aback',
+    'abactinal',
+    'abactinally',
+    'abaction',
+    'abactor',
+    'abaculus',
+    'abacus',
+    'Abadite',
+    'abaff',
+    'abaft',
+    'abaisance',
+    'abaiser',
+    'abaissed',
+    'abalienate',
+    'abalienation',
+  ];
+
   filteredData: string[];
+  fileContent: string = '';
 
   constructor() {}
 
   ngOnInit() {}
 
+  // public onChange(fileList) {
+  //   let file = fileList[0];
+  //   let fileReader: FileReader = new FileReader();
+  //   let self = this;
+  //   fileReader.onloadend = function (x) {
+  //     self.fileContent = JSON.stringify(fileReader.result);
+  //     console.log('fileContent:' + self.fileContent);
+  //   };
+  //   fileReader.readAsText(file);
+  // }
+
   autoCorrectDictonaryWord(inputData) {
+    console.log('this.fileContent)' + this.fileContent);
     this.filteredData = [];
     this.filteredData = this.masterData.filter((item) => {
       return (
@@ -71,7 +128,7 @@ export class HelloComponent implements OnInit {
   // Eg. “felhi” should return “Delhi
 
   serachDuplicateData(inputData, item): any {
-    const LetterBigramSplit1 = this.getLetterBigramSplit(inputData),
+    let LetterBigramSplit1 = this.getLetterBigramSplit(inputData),
       LetterBigramSplit2 = this.getLetterBigramSplit(item);
     let similar = [];
     for (let i = 0; i < LetterBigramSplit1.length; i++) {
@@ -82,7 +139,7 @@ export class HelloComponent implements OnInit {
     return (
       similar.length /
         Math.max(LetterBigramSplit1.length, LetterBigramSplit2.length) >
-      0.3
+      0.5
     );
   }
 
@@ -113,7 +170,7 @@ export class HelloComponent implements OnInit {
 
     for (let i = 0; i < item.length - 1; i++) {
       result.push(item[i] + item[i + 1]);
-      return result;
     }
+    return result;
   }
 }
