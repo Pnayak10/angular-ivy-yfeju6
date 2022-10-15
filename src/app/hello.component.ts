@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HelloComponent implements OnInit {
   // @Input() name: string;
-  masterData: string[] = ['prem', 'PRem', "pre'm"];
+  masterData: string[] = ['all'];
   filteredData: string[];
 
   constructor() {}
@@ -20,7 +20,11 @@ export class HelloComponent implements OnInit {
       return (
         this.searchDataCase(inputData.toLowerCase(), item.toLowerCase()) ||
         this.serachDuplicateData(inputData.toLowerCase(), item.toLowerCase()) ||
-        this.searchTransposeData(inputData.toLowerCase(), item.toLowerCase())
+        this.searchTransposeData(inputData.toLowerCase(), item.toLowerCase()) ||
+        this.searchAndCorrectFirstLetter(
+          inputData.toLowerCase(),
+          item.toLowerCase()
+        )
       );
     });
   }
@@ -78,7 +82,7 @@ export class HelloComponent implements OnInit {
     return (
       similar.length /
         Math.max(LetterBigramSplit1.length, LetterBigramSplit2.length) >
-      0.5
+      0.3
     );
   }
 
@@ -88,6 +92,19 @@ export class HelloComponent implements OnInit {
     return (
       inputData.split('').sort().toLocaleString().replaceAll(',', '') ===
       item.split('').sort().toString().replaceAll(',', '')
+    );
+  }
+
+  // 1st Letter
+  searchAndCorrectFirstLetter(inputData, item) {
+    return (
+      inputData
+        .split('')
+        .slice(1)
+        .sort()
+        .toLocaleString()
+        .replaceAll(',', '') ===
+      item.split('').slice(1).sort().toString().replaceAll(',', '')
     );
   }
 
